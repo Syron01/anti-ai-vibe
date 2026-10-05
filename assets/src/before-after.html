@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1600px; height: 1000px; overflow: hidden; }
+  body {
+    background: #EFEAE0;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #1B1815;
+  }
+  .col { position: absolute; top: 36px; width: 700px; }
+  .col.left { left: 64px; }
+  .col.right { left: 836px; }
+  .tag {
+    font-family: system-ui, sans-serif; font-size: 14px;
+    letter-spacing: .3em; text-transform: uppercase; margin-bottom: 14px;
+  }
+  .tag.who { color: #1B1815; }
+  .tag.author { color: #C6073A; }
+  .tag span { color: #4A443B; text-transform: none; letter-spacing: .04em; }
+
+  /* ============ LEFT — the mean ============ */
+  .mean {
+    width: 700px; height: 780px; border-radius: 28px; overflow: hidden;
+    background: linear-gradient(135deg, #4F46E5, #7C3AED 55%, #6D28D9);
+    position: relative;
+    box-shadow: 0 24px 60px rgba(76, 29, 149, .45);
+  }
+  .orb {
+    position: absolute; width: 340px; height: 340px; border-radius: 50%;
+    right: -70px; top: -90px;
+    background: radial-gradient(circle at 32% 32%, rgba(255,255,255,.75), rgba(255,255,255,.12) 55%, transparent 70%);
+    filter: blur(2px);
+  }
+  .orb2 {
+    position: absolute; width: 200px; height: 200px; border-radius: 50%;
+    left: -60px; bottom: 180px;
+    background: radial-gradient(circle at 40% 35%, rgba(56,189,248,.65), rgba(56,189,248,.08) 60%, transparent 72%);
+    filter: blur(3px);
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin: 44px 0 0 48px; padding: 8px 18px;
+    background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.35);
+    border-radius: 999px; backdrop-filter: blur(10px);
+    font-family: system-ui, sans-serif; font-size: 15px; font-weight: 600; color: #fff;
+  }
+  .glass {
+    margin: 26px 48px 0; padding: 30px 28px 34px;
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3);
+    border-radius: 24px; backdrop-filter: blur(14px);
+  }
+  .glass h2 {
+    font-family: system-ui, sans-serif; font-size: 44px; font-weight: 800; color: #fff;
+    letter-spacing: -0.02em; line-height: 1.08;
+  }
+  .glass p {
+    margin-top: 14px; font-family: system-ui, sans-serif; font-size: 17px; line-height: 1.55;
+    color: rgba(255,255,255,.78); max-width: 520px;
+  }
+  .ctas { margin-top: 24px; display: flex; gap: 14px; }
+  .cta {
+    font-family: system-ui, sans-serif; font-size: 16px; font-weight: 700;
+    padding: 13px 26px; border-radius: 14px; color: #6D28D9; background: #fff; width: max-content;
+  }
+  .cta.ghost {
+    background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.4);
+  }
+  .trio { display: flex; gap: 16px; margin: 30px 48px 0; }
+  .mini {
+    flex: 1; padding: 20px 18px; border-radius: 20px;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22);
+  }
+  .mini .ic { font-size: 26px; }
+  .mini h3 { font-family: system-ui, sans-serif; font-size: 17px; font-weight: 700; color: #fff; margin-top: 10px; }
+  .mini p { font-family: system-ui, sans-serif; font-size: 13px; color: rgba(255,255,255,.65); margin-top: 6px; line-height: 1.45; }
+  .soup {
+    position: absolute; left: 48px; right: 48px; bottom: 30px;
+    border-top: 1px solid rgba(255,255,255,.25); padding-top: 18px;
+  }
+  .soup .cap {
+    font-family: system-ui, sans-serif; font-size: 12px; letter-spacing: .22em;
+    text-transform: uppercase; color: rgba(255,255,255,.6); text-align: center; margin-bottom: 14px;
+  }
+  .soup .row { display: flex; justify-content: space-between; align-items: center; }
+  .soup .logo {
+    font-family: system-ui, sans-serif; font-weight: 800; font-size: 15px;
+    color: rgba(255,255,255,.45); letter-spacing: .02em;
+    filter: grayscale(1);
+  }
+
+  .notes {
+    margin-top: 16px; font-family: system-ui, sans-serif; font-size: 14.5px; color: #4A443B; line-height: 1.7;
+  }
+  .notes b { color: #8B2F20; font-weight: 600; }
+
+  /* ============ RIGHT — authored ============ */
+  .authored {
+    width: 700px; height: 780px; border-radius: 4px; overflow: hidden;
+    background: #FCFAF4; border: 2px solid #1B1815; position: relative;
+  }
+  .mast {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 26px 48px 20px; border-bottom: 2px solid #1B1815;
+  }
+  .mast .name { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; }
+  .mast .est { font-family: system-ui, sans-serif; font-size: 12.5px; letter-spacing: .26em; text-transform: uppercase; color: #4A443B; }
+  .hero { padding: 34px 48px 0; }
+  .hero h2 { font-size: 47px; line-height: 1.12; letter-spacing: -0.015em; font-weight: 700; }
+  .hero h2 em { font-style: normal; color: #C6073A; }
+  .hero p { margin-top: 16px; font-family: system-ui, sans-serif; font-size: 16.5px; color: #4A443B; line-height: 1.6; max-width: 560px; }
+  .cta-red {
+    display: inline-block; margin-top: 24px; padding: 13px 26px;
+    background: #C6073A; color: #FCFAF4; border-radius: 4px;
+    font-family: system-ui, sans-serif; font-size: 16px; font-weight: 700;
+  }
+  .menu { margin: 34px 48px 0; border-top: 2px solid #1B1815; padding-top: 20px; }
+  .menu .mhead { font-family: system-ui, sans-serif; font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #1B1815; margin-bottom: 12px; }
+  .row { display: flex; align-items: baseline; font-size: 18px; padding: 7px 0; }
+  .row .dots { flex: 1; border-bottom: 2px dotted #B7AE9C; margin: 0 12px; transform: translateY(-4px); }
+  .row .price { font-family: system-ui, sans-serif; font-size: 16px; color: #4A443B; }
+  .note-a {
+    position: absolute; left: 48px; right: 48px; bottom: 26px;
+    border-top: 1px solid #B7AE9C; padding-top: 14px;
+    font-family: system-ui, sans-serif; font-size: 14.5px; color: #4A443B; line-height: 1.7;
+  }
+  .note-a b { color: #1B1815; font-weight: 600; }
+  .addr {
+    position: absolute; left: 48px; right: 48px; bottom: 108px;
+    font-family: system-ui, sans-serif; font-size: 13.5px; color: #4A443B;
+    display: flex; justify-content: space-between;
+  }
+
+  .head {
+    position: absolute; top: 930px; left: 0; right: 0; text-align: center;
+    font-style: italic; font-size: 21px; color: #4A443B;
+  }
+</style>
+</head>
+<body>
+  <!-- LEFT -->
+  <div class="col left">
+    <div class="tag who">The mean &nbsp;<span>— authored by no one</span></div>
+    <div class="mean">
+      <div class="orb"></div><div class="orb2"></div>
+      <div class="chip">✨&nbsp; New &nbsp;·&nbsp; AI-Powered</div>
+      <div class="glass">
+        <h2>Build faster.<br>Ship smarter.</h2>
+        <p>Supercharge your workflow with seamless, next-generation experiences that unlock limitless potential.</p>
+        <div class="ctas"><div class="cta">Get Started</div><div class="cta ghost">Learn more</div></div>
+      </div>
+      <div class="trio">
+        <div class="mini"><div class="ic">🚀</div><h3>Fast</h3><p>10x your productivity</p></div>
+        <div class="mini"><div class="ic">🛡️</div><h3>Secure</h3><p>Enterprise-grade safety</p></div>
+        <div class="mini"><div class="ic">📊</div><h3>Scalable</h3><p>Built for growth</p></div>
+      </div>
+      <div class="soup">
+        <div class="cap">Trusted by 4,000+ teams</div>
+        <div class="row">
+          <span class="logo">Nexora</span><span class="logo">⬡ Hexlab</span><span class="logo">Quantia</span><span class="logo">⌘ Plexo</span><span class="logo">Vantage</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes"><b>Tells:</b> indigo gradient · glow orbs · glassmorphism · ✨ chip · rounded-2xl · emoji icons · triad cards · placeholder copy · invented value props</div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="col right">
+    <div class="tag author">The author &nbsp;<span>— anchor: 1960s Istanbul patisserie</span></div>
+    <div class="authored">
+      <div class="mast">
+        <div class="name">Meniçler Kıraathane</div>
+        <div class="est">Karaköy · est. 1961</div>
+      </div>
+      <div class="hero">
+        <h2>Open Tuesday–Saturday,<br><em>08:00 – 19:00</em></h2>
+        <p>The same oven since 1961. Two hundred cups before nine o'clock; the back table is reserved for the backgammon crowd.</p>
+        <div class="cta-red">See today's menu</div>
+      </div>
+      <div class="menu">
+        <div class="mhead">Today</div>
+        <div class="row"><span>Simit &amp; tea set</span><span class="dots"></span><span class="price">45 ₺</span></div>
+        <div class="row"><span>Mıhlama, single pan</span><span class="dots"></span><span class="price">120 ₺</span></div>
+        <div class="row"><span>Filtre kahve, Yirgacheffe</span><span class="dots"></span><span class="price">70 ₺</span></div>
+      </div>
+      <div class="addr"><span>Meniçler Sk. No 3, Karaköy</span><span>+90 212 000 19 61</span></div>
+      <div class="note-a"><b>Choices:</b> paper + ink · one red, one job · informative hero (hours, real dishes, real prices) · flat · 4px radius · dotted leaders, no cards</div>
+    </div>
+  </div>
+
+  <div class="head">Same product, same brief — one has an author.</div>
+</body>
+</html>

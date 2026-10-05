@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1600px; height: 520px; overflow: hidden; }
+  body {
+    background: #F6F3EA;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #1B1815;
+    position: relative;
+  }
+  .frame { position: absolute; inset: 18px; border: 2px solid #1B1815; }
+  .frame::after { content: ''; position: absolute; inset: 5px; border: 1px solid #1B1815; opacity: .35; }
+
+  .overline {
+    position: absolute; left: 72px; top: 64px;
+    font-family: system-ui, sans-serif;
+    font-size: 15px; letter-spacing: .34em; text-transform: uppercase;
+    color: #4A443B;
+  }
+  h1 {
+    position: absolute; left: 66px; top: 104px;
+    font-size: 128px; font-weight: 700; letter-spacing: -0.035em; line-height: 1;
+  }
+  .manifesto {
+    position: absolute; left: 72px; top: 268px;
+    font-size: 33px; font-style: italic; color: #211D17;
+  }
+  .manifesto strong { font-style: normal; color: #C6073A; }
+
+  .rule { position: absolute; left: 72px; top: 350px; width: 560px; height: 2px; background: #1B1815; }
+
+  .caption {
+    position: absolute; left: 72px; top: 382px;
+    font-family: system-ui, sans-serif; font-size: 16px; color: #4A443B; letter-spacing: .02em;
+  }
+  .caption b { color: #1B1815; font-weight: 600; }
+
+  /* palette column, right side */
+  .chips { position: absolute; right: 96px; top: 92px; display: flex; gap: 20px; }
+  .chip { width: 148px; }
+  .chip .sw { height: 148px; border: 2px solid #1B1815; }
+  .chip .lbl {
+    margin-top: 10px; font-family: system-ui, sans-serif;
+    font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #4A443B;
+  }
+  .chip .lbl b { display: block; color: #1B1815; font-size: 14px; letter-spacing: .08em; }
+
+  /* letterpress stamp */
+  .stamp {
+    position: absolute; right: 342px; top: 300px;
+    width: 210px; padding: 18px 16px;
+    border: 3px solid #C6073A; color: #C6073A;
+    transform: rotate(-3deg);
+    text-align: center;
+    font-family: system-ui, sans-serif;
+  }
+  .stamp .s1 { font-size: 19px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .stamp .s2 { margin-top: 6px; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; }
+
+  .foot {
+    position: absolute; left: 0; right: 0; bottom: 34px;
+    text-align: center; font-family: system-ui, sans-serif;
+    font-size: 14px; letter-spacing: .28em; text-transform: uppercase; color: #4A443B;
+  }
+</style>
+</head>
+<body>
+  <div class="frame"></div>
+
+  <div class="overline">A rules file for AI coding agents</div>
+  <h1>anti-ai-vibe</h1>
+  <div class="manifesto"><strong>Slop</strong> is design with no author.</div>
+  <div class="rule"></div>
+  <div class="caption">One committed anchor &nbsp;·&nbsp; <b>2 neutrals + 1 accent</b> &nbsp;·&nbsp; real content &nbsp;·&nbsp; subagent audits at the gate</div>
+
+  <div class="chips">
+    <div class="chip"><div class="sw" style="background:#F6F3EA"></div><div class="lbl"><b>Paper</b>60%</div></div>
+    <div class="chip"><div class="sw" style="background:#1B1815"></div><div class="lbl"><b>Ink</b>30%</div></div>
+    <div class="chip"><div class="sw" style="background:#C6073A"></div><div class="lbl"><b>Vermilion</b>10%</div></div>
+  </div>
+
+  <div class="stamp">
+    <div class="s1">One author</div>
+    <div class="s2">one system</div>
+  </div>
+
+  <div class="foot">anchor &nbsp;→&nbsp; tokens &nbsp;→&nbsp; build &nbsp;→&nbsp; gate</div>
+</body>
+</html>

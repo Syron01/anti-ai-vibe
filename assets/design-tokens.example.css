@@ -1,0 +1,86 @@
+/* ============================================================
+   anti-ai-vibe — example corporate token sheet
+   Anchor: "1960s Istanbul patisserie — glazed green tile,
+   marble counter, brass trim" (swap for your own)
+   Three layers: primitives --p-*  →  system --sys-*  →  components
+   Components consume ONLY --sys-*. Values live here, nowhere else.
+   ============================================================ */
+
+:root {
+  /* ---- primitives (sampled from the anchor's material world) ---- */
+  --p-paper-0: #FCFAF4;
+  --p-paper-1: #F3EFE7;   /* marble counter */
+  --p-paper-2: #E9E2D3;
+  --p-ink-0: #1B1815;
+  --p-ink-1: #211D17;     /* dark roast — text */
+  --p-ink-2: #4A443B;
+  --p-tile-0: #24463B;    /* glazed green tile */
+  --p-tile-1: #1B352C;
+  --p-brass-0: #7E5A1E;   /* brass, darkened for AA */
+  --p-brass-1: #9A7227;
+  --p-danger: #A63A2E;
+  --p-ok: #4A6B4F;
+
+  /* ---- system: color (semantic; dark theme re-binds these) ---- */
+  --sys-color-bg:        var(--p-paper-1);   /* 60% — ground */
+  --sys-color-surface:   var(--p-paper-0);   /* 30% — one step in */
+  --sys-color-surface-2: var(--p-paper-2);   /* pressed/selected */
+  --sys-color-text:      var(--p-ink-1);
+  --sys-color-text-2:    var(--p-ink-2);     /* secondary */
+  --sys-color-accent:    var(--p-brass-0);   /* 10% — primary action ONLY */
+  --sys-color-accent-text: var(--p-paper-0); /* text on accent (AA-verified) */
+  --sys-color-ok:        var(--p-ok);
+  --sys-color-danger:    var(--p-danger);
+
+  /* ---- system: type (derived from the anchor, reason stated) ---- */
+  --sys-font-heading: "Georgia", "Times New Roman", serif;  /* old menu letterpress */
+  --sys-font-body: system-ui, sans-serif;                   /* speed; budget spent on heading */
+  --sys-font-size-1: 0.8125rem;
+  --sys-font-size-2: 1rem;
+  --sys-font-size-3: 1.375rem;
+  --sys-font-size-4: 2rem;
+  --sys-font-size-5: 3rem;
+
+  /* ---- system: space (one scale, no improvisation) ---- */
+  --sys-space-1: 4px;
+  --sys-space-2: 8px;
+  --sys-space-3: 12px;
+  --sys-space-4: 16px;
+  --sys-space-5: 24px;
+  --sys-space-6: 40px;
+  --sys-space-7: 64px;
+
+  /* ---- system: shape & line (one value each) ---- */
+  --sys-radius: 4px;                 /* tile edge — the ONLY radius */
+  --sys-border: 1px solid var(--p-ink-0);
+
+  /* ---- system: motion policy (one easing, one duration, job required) ---- */
+  --sys-motion-ease: cubic-bezier(0.2, 0, 0, 1);
+  --sys-motion-duration: 160ms;
+
+  /* ---- system: z (three steps, no stacking games) ---- */
+  --sys-z-base: 0;
+  --sys-z-raised: 10;
+  --sys-z-overlay: 100;
+}
+
+/* ---- dark theme: same author, lights dimmed.
+       Reduced chroma, stepped-up surfaces, no glow. ---- */
+[data-theme="dark"] {
+  --sys-color-bg:        #161A17;
+  --sys-color-surface:   #1E2420;
+  --sys-color-surface-2: #28302A;
+  --sys-color-text:      #EDEAE2;
+  --sys-color-text-2:    #A9A398;
+  --sys-color-accent:    var(--p-brass-1);
+  --sys-color-accent-text: #161A17;
+}
+
+/* Example consumption — the only pattern components may use:
+   .button-primary {
+     background: var(--sys-color-accent);
+     color: var(--sys-color-accent-text);
+     border-radius: var(--sys-radius);
+     padding: var(--sys-space-2) var(--sys-space-4);
+     transition: background var(--sys-motion-duration) var(--sys-motion-ease);
+   } */
